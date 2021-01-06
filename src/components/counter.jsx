@@ -1,40 +1,25 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  // state = {
-  //     value:0
-  // };
-
   style = {
     fontSize: 15,
     fontWeight: "bold",
   };
-
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     value: this.props.counter.value,
-  //     url: "https://picsum.photos/300",
-  //   };
-  // }
-
   render() {
+    const {onIncrement,onDelete, counter } = this.props;
     return (
       <div>
-        {}
-        <span style={this.style} className={this.getBadgeClass()}>
-          {/* {this.state.value} */}
-          {this.props.counter.value}
+        <span style={this.style} className={this.getBadgeClass(counter)}>
+          {counter.value}
         </span>
         <button
-          // onClick={() => this.handleBtnClick()}
-          onClick={()=> this.props.onIncrement(this.props.counter)}
+          onClick={() => onIncrement(counter)}
           className="btn btn-primary mx-2"
         >
           Increments
         </button>
         <button
-          onClick={() => this.props.onDelete(this.props.counter.id)}
+          onClick={() => onDelete(counter.id)}
           className="btn btn-primary mx-2"
         >
           Delete
@@ -42,18 +27,21 @@ class Counter extends Component {
       </div>
     );
   }
-
-  getBadgeClass() {
+  //Both function are equal
+  // getBadgeClass(counter) {
+    // let classes = "badge m-2 badge-";
+    // classes += (counter.value === 0) ? "primary" : "success";
+    // return classes;
+  // }
+  //Below funtion called as arrow functions, 
+  //This is very helpful when we accessing states, unless it this key work refer that
+  //current funtions
+  getBadgeClass = (counter) => {
     let classes = "badge m-2 badge-";
-    classes += this.props.counter.value === 0 ? "primary" : "success";
+    classes += (counter.value === 0) ? "primary" : "success";
     return classes;
   }
 
-  // handleBtnClick() {
-  //   // console.log('btn click',this);
-  //   // let value = this.state.value;
-  //   this.setState({ value: this.props.counter.value + 1 });
-  // }
 }
 
 export default Counter;

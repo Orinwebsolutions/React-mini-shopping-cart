@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Counters from "./components/counters";
-import Navbar from "./navbar";
+import Navbar from "./components/navbar";
 
 class Apps extends Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class Apps extends Component {
       ],
     };
   }
+  //Lift up funtion which bind to children functionality. This is pass through props
   handleDelete = (counterID) => {
     const counters2 = this.state.counters;
     const result = counters2.filter((item) => item.id !== counterID);
